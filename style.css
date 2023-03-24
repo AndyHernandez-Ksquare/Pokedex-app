@@ -1,7 +1,7 @@
 main {
 }
 .grid-container {
-  height: 100vh;
+  height: 120vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,8 +9,8 @@ main {
 }
 
 .row {
-  width: 50rem;
-  height: 18rem;
+  width: 60rem;
+  height: 30rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -23,8 +23,54 @@ main {
   height: 16rem;
   width: 12rem;
   background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.card h1,
+.card p {
+  margin: 0;
+}
+
+.name {
+  font-size: 1.4rem;
+}
+
+.type i {
+  background-color: white;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+}
+
+.stats-section {
+  /* margin-top: 4rem; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.stats-section > p {
+  margin-bottom: 1rem;
+}
+
+.stats-section > section section {
+  display: flex;
+  font-size: 0.6rem;
+  gap: 1rem;
+}
+
+img {
+  width: 7rem;
+}
 .second-row {
   /* background-color: blue; */
 }
