@@ -28,9 +28,10 @@ const setCards = async (
 ) => {
   // Get the data
   const cardData = await fetchData();
-  //   Set name text
+  //   Set name text and src to its wikipedia
   const name = document.querySelector(nameClass);
   name.textContent = cardData.forms[0].name;
+  name.href = `https://en.wikipedia.org/wiki/${name.textContent}`;
   //    Set the type 1 text
   const type1 = document.querySelector(type1Class);
   type1.textContent = cardData.types[0].type.name;
@@ -80,3 +81,5 @@ setCards(
   ".defense-2",
   ".speed-2"
 );
+
+// Card 3
