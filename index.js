@@ -3,6 +3,8 @@
 
 // Generate random number
 const generateRandomNumber = () => {
+  // Generate random number between 1 and 1000
+  //   This is what gives a random pokemon on each render
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
   return randomNumber;
 };
