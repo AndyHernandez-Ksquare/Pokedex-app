@@ -1,0 +1,33 @@
+main {
+}
+.grid-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.row {
+  width: 50rem;
+  height: 18rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.first-row {
+  /* background-color: red; */
+}
+
+.card {
+  height: 16rem;
+  width: 12rem;
+  background-color: grey;
+}
+
+.second-row {
+  /* background-color: blue; */
+}
+.third-row {
+  /* background-color: yellow; */
+}
