@@ -1,5 +1,6 @@
 // DOM elements
 const searchInput = document.getElementById("search-input");
+const resetButton = document.getElementById("reset-button");
 
 // Array to store the name of the pokemon in each card
 const cardsArray = [];
@@ -110,5 +111,16 @@ searchInput.addEventListener("input", () => {
     else {
       card.style.display = "none";
     }
+  }
+});
+
+// Add an event listener to the reset button
+resetButton.addEventListener("click", () => {
+  // Reset the search input value
+  searchInput.value = "";
+  // Show all the cards
+  for (let i = 0; i < cardsArray.length; i++) {
+    const card = document.querySelector(`.card-${i}`);
+    card.style.display = "block";
   }
 });
