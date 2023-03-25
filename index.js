@@ -92,33 +92,13 @@ const setCards = async (
   cardsArray.push(...cardNames);
 })();
 
-console.log(cardsArray);
-
-// Create 12 cards
-// for (let i = 1; i <= 12; i++) {
-//   setCards(
-//     `.name-${i}`,
-//     `.type-${i}-1`,
-//     `.type-${i}-2`,
-//     `.img-${i}`,
-//     `.hp-${i}`,
-//     `.attack-${i}`,
-//     `.defense-${i}`,
-//     `.speed-${i}`
-//   );
-// }
-// console.log({ cardsArray });
 // TEST////////////////////////
 const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", () => {
   const searchQuery = searchInput.value.toLowerCase();
-  console.log(searchQuery);
   for (let i = 0; i < cardsArray.length; i++) {
     const cardName = cardsArray[i].toLowerCase();
-    // console.log({ cardName });
     const card = document.querySelector(`.card-${i}`);
-    console.log({ cardName });
-    // console.log(cardName.includes(searchQuery));
     if (cardName.includes(searchQuery)) {
       card.style.display = "block";
     } else {
