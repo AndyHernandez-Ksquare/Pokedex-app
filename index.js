@@ -1,6 +1,7 @@
 // DOM elements
 const searchInput = document.getElementById("search-input");
 const resetButton = document.getElementById("reset-button");
+const otherCardsButton = document.querySelector(".other-cards");
 
 // Array to store the name of the pokemon in each card
 const cardsArray = [];
@@ -68,11 +69,11 @@ const setCards = async (
 };
 
 // Function to set all the cards on the page
-// This is an IIFE function
-(async () => {
+
+const placeCards = async () => {
   // Array to store promises when calling the setCards function
   const cardPromises = [];
-  //   I had to put this for loop inside an async function because I notice it was pushing the names in the cardsArray randomly
+  //   I had to put this for loop inside an async function because I noticed it was pushing the names in the cardsArray randomly
   // That error is now fixed
   for (let i = 1; i <= 12; i++) {
     cardPromises.push(
@@ -91,7 +92,9 @@ const setCards = async (
   //   Wait for all promises to resolve and store the card names in the cardsArray array
   const cardNames = await Promise.all(cardPromises);
   cardsArray.push(...cardNames);
-})();
+};
+// Call the function on render
+placeCards();
 
 // Add event listener to the search bar
 searchInput.addEventListener("input", () => {
@@ -115,7 +118,7 @@ searchInput.addEventListener("input", () => {
         hasMatch = true;
         card.style.display = "block";
         card.style.position = "absolute";
-        card.style.top = "10rem";
+        card.style.top = "12rem";
         card.style.left = "0";
         card.style.right = "0";
         card.style.margin = "auto";
@@ -158,4 +161,10 @@ resetButton.addEventListener("click", () => {
   rows.forEach((row) => {
     row.style.display = "flex";
   });
+});
+
+// Button to get other cards
+otherCardsButton.addEventListener("click", () => {
+  setCards();
+  placeCards();
 });
