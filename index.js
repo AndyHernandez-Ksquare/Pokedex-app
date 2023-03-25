@@ -93,34 +93,90 @@ const setCards = async (
   cardsArray.push(...cardNames);
 })();
 
+// // Add event listener to the search bar
+// searchInput.addEventListener("input", () => {
+//   // Get the search input from the user
+//   const searchQuery = searchInput.value.toLowerCase();
+//   // Loop through all the elements in the cardsArray
+//   for (let i = 0; i < cardsArray.length; i++) {
+//     // Get the name of the current card
+//     const cardName = cardsArray[i].toLowerCase();
+//     // Get the card DOM element by its index
+//     const card = document.querySelector(`.card-${i}`);
+//     // If the card includes the search input, show it
+//     if (cardName.includes(searchQuery)) {
+//       card.style.display = "block";
+//     }
+//     // If not, hide it
+//     else {
+//       card.style.display = "none";
+//     }
+//   }
+// });
+
 // Add event listener to the search bar
 searchInput.addEventListener("input", () => {
   // Get the search input from the user
   const searchQuery = searchInput.value.toLowerCase();
-  // Loop through all the elements in the cardsArray
-  for (let i = 0; i < cardsArray.length; i++) {
-    // Get the name of the current card
-    const cardName = cardsArray[i].toLowerCase();
-    // Get the card DOM element by its index
-    const card = document.querySelector(`.card-${i}`);
-    // If the card includes the search input, show it
-    if (cardName.includes(searchQuery)) {
-      card.style.display = "block";
+
+  // Get all rows that contain the cards to be searched
+  const rows = document.querySelectorAll(".first-row, .second-row, .third-row");
+
+  // For each row, get all the cards within it and check if their name matches the search query
+  rows.forEach((row) => {
+    const cards = row.querySelectorAll(".card");
+    let hasMatch = false;
+
+    cards.forEach((card) => {
+      // Get the name of the card and convert it to lowercase
+      const name = card.querySelector(".name").textContent.toLowerCase();
+
+      // If the name includes the search query, show the card and center it on the screen using absolute positioning
+      if (name.includes(searchQuery)) {
+        hasMatch = true;
+        card.style.display = "block";
+        card.style.position = "absolute";
+        card.style.top = "10rem";
+        card.style.left = "0";
+        card.style.right = "0";
+        card.style.margin = "auto";
+      }
+      // Else, the card gets hidden
+      else {
+        card.style.display = "none";
+      }
+    });
+
+    // If at least one card in the row matches the search query, show the row
+    if (hasMatch) {
+      row.style.display = "flex";
     }
-    // If not, hide it
+    // Otherwise, hide the row
     else {
-      card.style.display = "none";
+      row.style.display = "none";
     }
-  }
+  });
 });
 
 // Add an event listener to the reset button
 resetButton.addEventListener("click", () => {
   // Reset the search input value
   searchInput.value = "";
+
   // Show all the cards
-  for (let i = 0; i < cardsArray.length; i++) {
-    const card = document.querySelector(`.card-${i}`);
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
     card.style.display = "block";
-  }
+    card.style.position = "";
+    card.style.top = "";
+    card.style.left = "";
+    card.style.right = "";
+    card.style.margin = "";
+  });
+
+  // Show all the rows
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((row) => {
+    row.style.display = "flex";
+  });
 });
