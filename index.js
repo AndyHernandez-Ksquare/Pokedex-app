@@ -13,12 +13,17 @@ const generateRandomNumber = () => {
   return randomNumber;
 };
 
+// Fetch the data
 const fetchData = async () => {
-  const req = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${generateRandomNumber()}/`
-  );
-  const data = await req.json();
-  return data;
+  try {
+    const req = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${generateRandomNumber()}/`
+    );
+    const data = await req.json();
+    return data;
+  } catch (error) {
+    console.log(`There was an error: ${error}`);
+  }
 };
 
 // Function to create cards
