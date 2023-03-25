@@ -1,5 +1,5 @@
-// Speed, attack and defende values are in an array called "stats"
 // DOM elements
+const searchInput = document.getElementById("search-input");
 
 // Array to store the name of the pokemon in each card
 const cardsArray = [];
@@ -92,16 +92,22 @@ const setCards = async (
   cardsArray.push(...cardNames);
 })();
 
-// TEST////////////////////////
-const searchInput = document.getElementById("search-input");
+// Add event listener to the search bar
 searchInput.addEventListener("input", () => {
+  // Get the search input from the user
   const searchQuery = searchInput.value.toLowerCase();
+  // Loop through all the elements in the cardsArray
   for (let i = 0; i < cardsArray.length; i++) {
+    // Get the name of the current card
     const cardName = cardsArray[i].toLowerCase();
+    // Get the card DOM element by its index
     const card = document.querySelector(`.card-${i}`);
+    // If the card includes the search input, show it
     if (cardName.includes(searchQuery)) {
       card.style.display = "block";
-    } else {
+    }
+    // If not, hide it
+    else {
       card.style.display = "none";
     }
   }
