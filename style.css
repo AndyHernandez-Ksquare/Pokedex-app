@@ -14,12 +14,34 @@ label {
   color: white;
 }
 
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 #reset-button {
   padding: 0.3rem 2.5rem;
   background-color: #262a56;
   color: white;
   border: none;
   border-radius: 5px;
+}
+
+.other-cards {
+  padding: 0.4rem 2.8rem;
+  color: white;
+  font-weight: 700;
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 5px;
+}
+
+.other-cards:hover {
+  background-color: #262a56;
+  border-color: #262a56;
+  cursor: pointer;
 }
 
 #reset-button:hover {
