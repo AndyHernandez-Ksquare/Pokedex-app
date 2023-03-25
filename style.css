@@ -4,7 +4,16 @@ main {
 body {
   margin: 0;
   font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: black;
 }
+
+label {
+  color: white;
+}
+
 .grid-container {
   height: 120vh;
   display: flex;
