@@ -14,6 +14,13 @@ label {
   color: white;
 }
 
+#reset-button {
+  padding: 0.3rem 2.5rem;
+  background-color: #262a56;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
 .grid-container {
   height: 120vh;
   display: flex;
