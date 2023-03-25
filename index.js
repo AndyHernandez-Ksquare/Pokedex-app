@@ -92,7 +92,6 @@ const setCards = async (
   cardsArray.push(...cardNames);
 })();
 
-setAllCards();
 console.log(cardsArray);
 
 // Create 12 cards
