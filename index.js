@@ -1,6 +1,8 @@
 // Speed, attack and defende values are in an array called "stats"
 // DOM elements
 
+// Array to store the name of the pokemon in each card
+const cardsArray = [];
 // Generate random number
 const generateRandomNumber = () => {
   // Generate random number between 1 and 1000
@@ -16,6 +18,8 @@ const fetchData = async () => {
   const data = await req.json();
   return data;
 };
+
+// Function to create cards
 const setCards = async (
   nameClass,
   type1Class,
@@ -32,6 +36,7 @@ const setCards = async (
   const name = document.querySelector(nameClass);
   name.textContent = cardData.forms[0].name;
   name.href = `https://en.wikipedia.org/wiki/${name.textContent}`;
+
   //    Set the type 1 text
   const type1 = document.querySelector(type1Class);
   type1.textContent = cardData.types[0].type.name;
@@ -57,18 +62,68 @@ const setCards = async (
   //   Speed
   const speed = document.querySelector(speedClass);
   speed.textContent = `SPEED: ${cardData.stats[5].base_stat}`;
+
+  return name.textContent;
 };
 
+// Function to set all the cards on the page
+// This is an IIFE function
+(async () => {
+  // Array to store promises when calling the setCards function
+  const cardPromises = [];
+  //   I had to put this for loop inside an async function because I notice it was pushing the names in the cardsArray randomly
+  // That error is now fixed
+  for (let i = 1; i <= 12; i++) {
+    cardPromises.push(
+      setCards(
+        `.name-${i}`,
+        `.type-${i}-1`,
+        `.type-${i}-2`,
+        `.img-${i}`,
+        `.hp-${i}`,
+        `.attack-${i}`,
+        `.defense-${i}`,
+        `.speed-${i}`
+      )
+    );
+  }
+  //   Wait for all promises to resolve and store the card names in the cardsArray array
+  const cardNames = await Promise.all(cardPromises);
+  cardsArray.push(...cardNames);
+})();
+
+setAllCards();
+console.log(cardsArray);
+
 // Create 12 cards
-for (let i = 0; i <= 12; i++) {
-  setCards(
-    `.name-${i}`,
-    `.type-${i}-1`,
-    `.type-${i}-2`,
-    `.img-${i}`,
-    `.hp-${i}`,
-    `.attack-${i}`,
-    `.defense-${i}`,
-    `.speed-${i}`
-  );
-}
+// for (let i = 1; i <= 12; i++) {
+//   setCards(
+//     `.name-${i}`,
+//     `.type-${i}-1`,
+//     `.type-${i}-2`,
+//     `.img-${i}`,
+//     `.hp-${i}`,
+//     `.attack-${i}`,
+//     `.defense-${i}`,
+//     `.speed-${i}`
+//   );
+// }
+// console.log({ cardsArray });
+// TEST////////////////////////
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", () => {
+  const searchQuery = searchInput.value.toLowerCase();
+  console.log(searchQuery);
+  for (let i = 0; i < cardsArray.length; i++) {
+    const cardName = cardsArray[i].toLowerCase();
+    // console.log({ cardName });
+    const card = document.querySelector(`.card-${i}`);
+    console.log({ cardName });
+    // console.log(cardName.includes(searchQuery));
+    if (cardName.includes(searchQuery)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  }
+});
