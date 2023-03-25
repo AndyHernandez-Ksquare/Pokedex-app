@@ -96,6 +96,29 @@ const placeCards = async () => {
 // Call the function on render
 placeCards();
 
+// Function to reset the search bar
+const resetSearchBar = () => {
+  // Reset the search input value
+  searchInput.value = "";
+
+  // Show all the cards
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    card.style.display = "block";
+    card.style.position = "";
+    card.style.top = "";
+    card.style.left = "";
+    card.style.right = "";
+    card.style.margin = "";
+  });
+
+  // Show all the rows
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((row) => {
+    row.style.display = "flex";
+  });
+};
+
 // Add event listener to the search bar
 searchInput.addEventListener("input", () => {
   // Get the search input from the user
@@ -141,30 +164,11 @@ searchInput.addEventListener("input", () => {
 });
 
 // Add an event listener to the reset button
-resetButton.addEventListener("click", () => {
-  // Reset the search input value
-  searchInput.value = "";
-
-  // Show all the cards
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-    card.style.display = "block";
-    card.style.position = "";
-    card.style.top = "";
-    card.style.left = "";
-    card.style.right = "";
-    card.style.margin = "";
-  });
-
-  // Show all the rows
-  const rows = document.querySelectorAll(".row");
-  rows.forEach((row) => {
-    row.style.display = "flex";
-  });
-});
+resetButton.addEventListener("click", resetSearchBar);
 
 // Button to get other cards
 otherCardsButton.addEventListener("click", () => {
   setCards();
   placeCards();
+  resetSearchBar();
 });
